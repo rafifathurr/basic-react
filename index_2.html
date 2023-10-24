@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Belajar React Part 2</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- SELF CLOSING TAG IF TAG NOT HAVE END TAG -->
+    <!-- ALWAYS USE CAMELCASE -->
+    <script type="text/jsx">
+      const container = document.getElementById("root");
+      const root = ReactDOM.createRoot(container);
+
+      function Header({name}){
+        return(<h1>Belajar React Bareng {name ? name : 'WPU'} 🚀</h1>);
+      }
+
+      function HomePage(){
+        const students = ['Sandika Galih', 'Doddy Ferdiansyah', 'Erik'];
+
+        const [likes, setLikes] = React.useState(0);
+
+        function ButtonLikes(){
+          return(<button onClick={handleClick}>Like ({likes})</button>);
+        }
+
+        function ButtonReset(){
+          return(<button onClick={handleReset}>Reset</button>);
+        }
+
+        function handleClick(){
+          setLikes(likes + 1);
+        }
+
+        function handleReset(){
+          setLikes(0);
+        }
+
+        return(
+          <div>
+            <Header name='Pa Dhika'/>
+            <ul>
+              {students.map((student)=>(
+                <li key={student}>{student}</li>
+              ))}
+            </ul>
+            <ButtonLikes />
+            <ButtonReset />
+          </div>
+        )
+      }
+
+      root.render(
+        <HomePage />
+        );
+    </script>
+  </body>
+</html>
